@@ -1,3 +1,6 @@
+//Guilherme Cardoso Ferreira - 1250108661
+//Maria Luiza Bispo do Carmo - 1250107981
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -5,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Cadastro de Alunos</title>
     <style>
-        /* Reset básico */
         * {
             margin: 0;
             padding: 0;
@@ -30,14 +32,12 @@
             max-width: 400px;
         }
 
-        /* Título centralizado */
         h1 {
             text-align: center;
             color: #333;
             margin-bottom: 20px;
         }
 
-        /* Campos organizados visualmente */
         .form-group {
             margin-bottom: 15px;
         }
@@ -57,7 +57,6 @@
             font-size: 16px;
         }
 
-        /* Botão estilizado */
         button {
             width: 100%;
             padding: 10px;
@@ -71,17 +70,15 @@
             margin-top: 10px;
         }
 
-        /* Efeito hover no botão */
         button:hover {
             background-color: #0056b3;
         }
 
-        /* Área de resultado destacada */
         #resultado {
             margin-top: 20px;
             padding: 15px;
             border-radius: 4px;
-            display: none; /* Escondido até ter uma ação */
+            display: none;
         }
 
         .sucesso {
@@ -108,17 +105,17 @@
 
         <div class="form-group">
             <label for="nome">Nome do aluno:</label>
-            <input type="text" id="nome" placeholder="Ex: João Silva">
+            <input type="text" id="nome" placeholder="Ex: João Silva" oninput="this.value = this.value.replace(/[0-9]/g, '')">
         </div>
 
         <div class="form-group">
             <label for="matricula">Matrícula:</label>
-            <input type="text" id="matricula" placeholder="Ex: 20250001">
+            <input type="text" id="matricula" placeholder="Ex: 20250001" oninput="this.value = this.value.replace(/\D/g, '')">
         </div>
 
         <div class="form-group">
             <label for="curso">Curso:</label>
-            <input type="text" id="curso" placeholder="Ex: Engenharia de Software">
+            <input type="text" id="curso" placeholder="Ex: Engenharia de Software" oninput="this.value = this.value.replace(/[0-9]/g, '')">
         </div>
 
         <button onclick="cadastrarAluno()">Cadastrar</button>
@@ -127,32 +124,21 @@
     </div>
 
     <script>
-        // Função (function)
         function cadastrarAluno() {
-            // Uso de document.getElementById() e .value
-            // Uso de Variáveis (let)
             let nomeValor = document.getElementById("nome").value;
             let matriculaValor = document.getElementById("matricula").value;
             let cursoValor = document.getElementById("curso").value;
             
-            // Capturando a div de resultado
             let areaResultado = document.getElementById("resultado");
 
-            // Estrutura condicional (if / else)
-            // Verificando se os campos estão vazios
             if (nomeValor === "" || matriculaValor === "" || cursoValor === "") {
-                // Caso exista algum campo vazio, exibe mensagem de erro
                 areaResultado.className = "erro";
-                areaResultado.style.display = "block"; // Torna a div visível
-                
-                // Uso de .innerHTML
+                areaResultado.style.display = "block"; 
                 areaResultado.innerHTML = "<strong>Erro:</strong> Por favor, preencha todos os campos do formulário.";
             } else {
-                // Caso todos os campos estejam preenchidos, exibe os dados
                 areaResultado.className = "sucesso";
-                areaResultado.style.display = "block"; // Torna a div visível
+                areaResultado.style.display = "block"; 
                 
-                // Uso de .innerHTML para injetar a formatação de sucesso
                 areaResultado.innerHTML = `
                     <h3>Aluno cadastrado com sucesso!</h3>
                     <p><strong>Nome:</strong> ${nomeValor}</p>
@@ -160,13 +146,11 @@
                     <p><strong>Curso:</strong> ${cursoValor}</p>
                 `;
 
-                // Opcional: limpar os campos após o cadastro
                 document.getElementById("nome").value = "";
                 document.getElementById("matricula").value = "";
                 document.getElementById("curso").value = "";
             }
         }
     </script>
-
 </body>
 </html>
